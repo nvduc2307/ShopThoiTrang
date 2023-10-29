@@ -8,7 +8,19 @@ public class AdminController : Controller {
     {
         _logger = logger;
     }
+    //[GET] /admin
     public IActionResult Index()
+    {
+        return View();
+    }
+
+    //[GET] /admin/products
+    public IActionResult Products()
+    {
+        return View();
+    }
+
+    public IActionResult CreateProduct()
     {
         return View();
     }
