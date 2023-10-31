@@ -1,4 +1,8 @@
+using System.Collections.Generic;
+using FrontEnd.Databases;
+using FrontEnd.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace FrontEnd.Controllers;
 public class AdminController : Controller {
@@ -17,6 +21,11 @@ public class AdminController : Controller {
     //[GET] /admin/products
     public IActionResult Products()
     {
+        var url = "http://localhost:8080";
+        var urlbase = "/api/products";
+        var contentJson = FetchApi.FetchGet(url, urlbase);
+        Console.WriteLine(contentJson);
+        // var products = JsonConvert.DeserializeObject<List<Product>>(contentJson);
         return View();
     }
 

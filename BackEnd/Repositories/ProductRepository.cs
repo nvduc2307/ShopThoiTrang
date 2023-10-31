@@ -1,3 +1,4 @@
+using ShopThoiTrang.BackEnd.Databases;
 using ShopThoiTrang.BackEnd.Entities;
 using ShopThoiTrang.BackEnd.IRepositories;
 
@@ -5,9 +6,23 @@ namespace ShopThoiTrang.BackEnd.Repositories;
 
 public class ProductRepository : IProductRepository
 {
-    public Task CreateProduct(ProductEntity productEntity)
+    private MainDbContext _mainDbContext;
+    public ProductRepository(MainDbContext mainDbContext)
     {
-        throw new NotImplementedException();
+        _mainDbContext = mainDbContext;
+    }
+    public async Task<ProductEntity> CreateProduct(ProductEntity productEntity)
+    {
+        var products = _mainDbContext.products;
+        var isExisted = products.Any(x => x.Name == productEntity.Name);
+        if(!isExisted) {
+            _mainDbContext.products.Add(productEntity);
+            _mainDbContext.SaveChanges();
+            return productEntity;
+        } else
+        {
+            return null;
+        }
     }
 
     public Task DeleteProduct(int productEntityId)
@@ -25,9 +40,10 @@ public class ProductRepository : IProductRepository
         throw new NotImplementedException();
     }
 
-    public Task<List<ProductEntity>> GetProducts()
+    public async Task<List<ProductEntity>> GetProducts()
     {
-        throw new NotImplementedException();
+        var products = _mainDbContext.products.ToList();
+        return  products;
     }
 
     public Task RestoreProduct(int productEntityId)

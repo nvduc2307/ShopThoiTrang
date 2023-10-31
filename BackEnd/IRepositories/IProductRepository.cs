@@ -4,7 +4,7 @@ namespace ShopThoiTrang.BackEnd.IRepositories;
 
 public interface IProductRepository {
     Task<List<ProductEntity>> GetProducts();
-    Task CreateProduct(ProductEntity productEntity);
+    Task<ProductEntity> CreateProduct(ProductEntity productEntity);
     Task DeleteProduct(int productEntityId);
     Task UpDateProduct(int productEntityId, ProductEntity productEntityUpdate);
     Task RestoreProduct(int productEntityId);

@@ -15,8 +15,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MainDbContext>(options => {
     // options.UseSqlServer(configuration.GetConnectionString("sqlserver"));
-    // options.UseSqlServer(configuration.GetConnectionString("sqlserverHC"));
-    options.UseMySQL(configuration.GetConnectionString("mysql"));
+    options.UseSqlServer(configuration.GetConnectionString("sqlserverHC"));
+    // options.UseMySQL(configuration.GetConnectionString("mysql"));
 });
 
 builder.Services.AddTransient<IProductRepository, ProductRepository>();

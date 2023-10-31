@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using ShopThoiTrang.BackEnd.Entities;
 
 namespace ShopThoiTrang.BackEnd.Databases;
 public class MainDbContext : DbContext {
@@ -15,5 +16,6 @@ public class MainDbContext : DbContext {
         base.OnModelCreating(modelBuilder);
     }
     //config dbset
+    public DbSet<ProductEntity> products {get; set;}
     
 }
